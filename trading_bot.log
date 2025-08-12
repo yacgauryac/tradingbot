@@ -1,0 +1,520 @@
+2025-08-13 00:07:51,285 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:07:51,286 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:07:51,286 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:07:51,286 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:07:51,287 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:07:51,287 - __main__ - INFO - ============================================================
+2025-08-13 00:07:51,289 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:07:51,290 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:07:51,296 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:07:51,296 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:07:51,296 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:07:51,706 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:07:51,706 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:07:51,707 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:07:51,707 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:07:51,708 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:07:51,709 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:07:51,709 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:07:51,709 - __main__ - INFO - 📊 === CYCLE #1 - 00:07:51 ===
+2025-08-13 00:07:51,710 - ib_connector - ERROR - ❌ Health check échoué: This event loop is already running
+2025-08-13 00:07:51,710 - __main__ - ERROR - ❌ Connexion IB défaillante, tentative de reconnexion...
+2025-08-13 00:07:51,710 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:07:51,711 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:07:51,711 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:07:51,711 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:07:51,712 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<IB.accountSummaryAsync() done, defined at C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py:1869> exception=ConnectionError('Not connected')>
+Traceback (most recent call last):
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1873, in accountSummaryAsync
+    await self.reqAccountSummaryAsync()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1895, in reqAccountSummaryAsync
+    self.client.reqAccountSummary(reqId, 'All', tags)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 838, in reqAccountSummary
+    self.send(62, 1, reqId, groupName, tags)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 238, in send
+    raise ConnectionError('Not connected')
+ConnectionError: Not connected
+2025-08-13 00:07:51,715 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<IB.accountSummaryAsync() done, defined at C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py:1869> exception=ConnectionError('Not connected')>
+Traceback (most recent call last):
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1873, in accountSummaryAsync
+    await self.reqAccountSummaryAsync()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1895, in reqAccountSummaryAsync
+    self.client.reqAccountSummary(reqId, 'All', tags)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 838, in reqAccountSummary
+    self.send(62, 1, reqId, groupName, tags)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 238, in send
+    raise ConnectionError('Not connected')
+ConnectionError: Not connected
+2025-08-13 00:07:51,717 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('Socket disconnect')>
+ConnectionError: Socket disconnect
+2025-08-13 00:07:51,718 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('Socket disconnect')>
+ConnectionError: Socket disconnect
+2025-08-13 00:07:52,027 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:07:52,028 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:07:52,028 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:07:52,029 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:07:52,030 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:07:52,030 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:07:52,030 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:07:52,031 - __main__ - INFO - ✅ Cycle terminé en 0.3s, pause 180s
+2025-08-13 00:07:52,274 - ib_insync.wrapper - ERROR - Error 200, reqId 4: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='EUR.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,275 - ib_insync.wrapper - ERROR - Error 200, reqId 5: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='GBP.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,275 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='EUR.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,276 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='GBP.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,365 - ib_insync.wrapper - ERROR - Error 200, reqId 6: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='USD.JPY', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,366 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='USD.JPY', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,474 - ib_insync.wrapper - ERROR - Error 200, reqId 7: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='AUD.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,475 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='AUD.USD', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,582 - ib_insync.wrapper - ERROR - Error 200, reqId 8: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='USD.CHF', exchange='SMART', currency='USD')
+2025-08-13 00:07:52,583 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='USD.CHF', exchange='SMART', currency='USD')
+2025-08-13 00:10:51,720 - __main__ - INFO - 📊 === CYCLE #2 - 00:10:51 ===
+2025-08-13 00:10:51,721 - ib_connector - ERROR - ❌ Health check échoué: This event loop is already running
+2025-08-13 00:10:51,721 - __main__ - ERROR - ❌ Connexion IB défaillante, tentative de reconnexion...
+2025-08-13 00:10:51,721 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:10:51,722 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:10:51,722 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:10:51,722 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:10:51,835 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:10:51,835 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:10:51,836 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:10:51,836 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:10:51,837 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:10:51,837 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:10:51,837 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:10:51,837 - __main__ - INFO - ✅ Cycle terminé en 0.1s, pause 180s
+2025-08-13 00:10:52,068 - ib_insync.wrapper - ERROR - Error 200, reqId 4: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='EUR.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,068 - ib_insync.wrapper - ERROR - Error 200, reqId 5: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='GBP.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,069 - ib_insync.wrapper - ERROR - Error 200, reqId 6: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='USD.JPY', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,069 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='EUR.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,069 - ib_insync.wrapper - ERROR - Error 200, reqId 7: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='AUD.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,069 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='GBP.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,070 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='USD.JPY', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,070 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='AUD.USD', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,166 - ib_insync.wrapper - ERROR - Error 200, reqId 8: Aucune d\u00e9finition de titre trouv\u00e9e pour cette requ\u00eate, contract: Stock(symbol='USD.CHF', exchange='SMART', currency='USD')
+2025-08-13 00:10:52,166 - ib_insync.ib - WARNING - Unknown contract: Stock(symbol='USD.CHF', exchange='SMART', currency='USD')
+2025-08-13 00:11:49,170 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:13:46,951 - ib_insync.client - ERROR - Peer closed connection.
+2025-08-13 00:13:51,726 - __main__ - INFO - 🛑 Arrêt du bot en cours...
+2025-08-13 00:13:51,726 - __main__ - INFO - ⏰ Durée totale: 0:06:00
+2025-08-13 00:13:51,727 - __main__ - INFO - 🔄 Cycles total: 2
+2025-08-13 00:13:51,727 - __main__ - INFO - 📊 RAPPORT FINAL:
+2025-08-13 00:13:51,727 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:13:51,728 - __main__ - INFO - ✅ Bot arrêté proprement
+2025-08-13 00:15:53,063 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:15:53,063 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:15:53,064 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:15:53,064 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:15:53,064 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:15:53,064 - __main__ - INFO - ============================================================
+2025-08-13 00:15:53,066 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:15:53,066 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:15:53,066 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:15:53,067 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:15:53,067 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:15:53,183 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:15:53,183 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:15:53,184 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:15:53,184 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:15:53,187 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:15:53,187 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:15:53,187 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:15:53,188 - __main__ - INFO - 📊 === CYCLE #1 - 00:15:53 ===
+2025-08-13 00:15:53,189 - ib_connector - ERROR - ❌ Health check échoué: This event loop is already running
+2025-08-13 00:15:53,190 - __main__ - ERROR - ❌ Connexion IB défaillante, tentative de reconnexion...
+2025-08-13 00:15:53,190 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:15:53,190 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:15:53,191 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:15:53,191 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:15:53,192 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<IB.accountSummaryAsync() done, defined at C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py:1869> exception=ConnectionError('Not connected')>
+Traceback (most recent call last):
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1873, in accountSummaryAsync
+    await self.reqAccountSummaryAsync()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1895, in reqAccountSummaryAsync
+    self.client.reqAccountSummary(reqId, 'All', tags)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 838, in reqAccountSummary
+    self.send(62, 1, reqId, groupName, tags)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 238, in send
+    raise ConnectionError('Not connected')
+ConnectionError: Not connected
+2025-08-13 00:15:53,200 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<IB.accountSummaryAsync() done, defined at C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py:1869> exception=ConnectionError('Not connected')>
+Traceback (most recent call last):
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1873, in accountSummaryAsync
+    await self.reqAccountSummaryAsync()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\ib.py", line 1895, in reqAccountSummaryAsync
+    self.client.reqAccountSummary(reqId, 'All', tags)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 838, in reqAccountSummary
+    self.send(62, 1, reqId, groupName, tags)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\RighiJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\ib_insync\client.py", line 238, in send
+    raise ConnectionError('Not connected')
+ConnectionError: Not connected
+2025-08-13 00:15:53,205 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('Socket disconnect')>
+ConnectionError: Socket disconnect
+2025-08-13 00:15:53,206 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=ConnectionError('Socket disconnect')>
+ConnectionError: Socket disconnect
+2025-08-13 00:15:53,372 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:15:53,373 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:15:53,373 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:15:53,373 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:15:53,374 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:15:53,374 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:15:53,374 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:15:53,374 - __main__ - INFO - ✅ Cycle terminé en 0.2s, pause 180s
+2025-08-13 00:18:53,192 - __main__ - INFO - 📊 === CYCLE #2 - 00:18:53 ===
+2025-08-13 00:18:53,192 - ib_connector - ERROR - ❌ Health check échoué: This event loop is already running
+2025-08-13 00:18:53,193 - __main__ - ERROR - ❌ Connexion IB défaillante, tentative de reconnexion...
+2025-08-13 00:18:53,193 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:18:53,193 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:18:53,193 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:18:53,193 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:18:53,304 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:18:53,305 - ib_connector - ERROR - ❌ Erreur récupération compte: This event loop is already running
+2025-08-13 00:18:53,305 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:18:53,305 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:18:53,306 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:18:53,306 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:18:53,306 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:18:53,306 - __main__ - INFO - ✅ Cycle terminé en 0.1s, pause 180s
+2025-08-13 00:21:18,716 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:21:53,193 - __main__ - INFO - 🛑 Arrêt du bot en cours...
+2025-08-13 00:21:53,194 - __main__ - INFO - ⏰ Durée totale: 0:06:00
+2025-08-13 00:21:53,194 - __main__ - INFO - 🔄 Cycles total: 2
+2025-08-13 00:21:53,194 - __main__ - INFO - 📊 RAPPORT FINAL:
+2025-08-13 00:21:53,195 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:21:53,196 - ib_connector - INFO - 🔌 Déconnecté d'IB
+2025-08-13 00:21:53,196 - __main__ - INFO - ✅ Bot arrêté proprement
+2025-08-13 00:23:13,939 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:23:13,939 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:23:13,939 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:23:13,939 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:23:13,940 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:23:13,940 - __main__ - INFO - ============================================================
+2025-08-13 00:23:13,942 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:23:13,942 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:23:13,943 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:23:13,943 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:23:13,943 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:23:14,352 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:23:14,353 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:23:14,353 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:23:14,353 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:23:14,354 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:23:14,354 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:23:14,354 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:23:14,355 - __main__ - INFO - 📊 === CYCLE #1 - 00:23:14 ===
+2025-08-13 00:23:14,355 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:23:14,355 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:23:14,356 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:23:14,356 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:23:14,356 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:23:14,357 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:26:14,359 - __main__ - INFO - 📊 === CYCLE #2 - 00:26:14 ===
+2025-08-13 00:26:14,359 - ib_connector - ERROR - ❌ Erreur création contrat EUR.USD: This event loop is already running
+2025-08-13 00:26:14,360 - ib_connector - ERROR - ❌ Erreur création contrat GBP.USD: This event loop is already running
+2025-08-13 00:26:14,360 - ib_connector - ERROR - ❌ Erreur création contrat USD.JPY: This event loop is already running
+2025-08-13 00:26:14,360 - ib_connector - ERROR - ❌ Erreur création contrat AUD.USD: This event loop is already running
+2025-08-13 00:26:14,361 - ib_connector - ERROR - ❌ Erreur création contrat USD.CHF: This event loop is already running
+2025-08-13 00:26:14,361 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:28:25,195 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:29:14,370 - __main__ - INFO - 🛑 Arrêt du bot en cours...
+2025-08-13 00:29:14,371 - __main__ - INFO - ⏰ Durée totale: 0:06:00
+2025-08-13 00:29:14,372 - __main__ - INFO - 🔄 Cycles total: 2
+2025-08-13 00:29:14,372 - __main__ - INFO - 📊 RAPPORT FINAL:
+2025-08-13 00:29:14,373 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:29:14,375 - ib_connector - INFO - 🔌 Déconnecté d'IB
+2025-08-13 00:29:14,376 - __main__ - INFO - ✅ Bot arrêté proprement
+2025-08-13 00:30:06,872 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:30:06,873 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:30:06,873 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:30:06,873 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:30:06,874 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:30:06,874 - __main__ - INFO - ============================================================
+2025-08-13 00:30:06,877 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:30:06,877 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:30:06,877 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:30:06,877 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:30:06,878 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:30:06,991 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:30:06,992 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:30:06,992 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:30:06,992 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:30:06,994 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:30:06,994 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:30:06,995 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:30:06,995 - __main__ - INFO - 📊 === CYCLE #1 - 00:30:06 ===
+2025-08-13 00:30:06,996 - ib_connector - INFO - ✅ Contrat FOREX créé: EUR.USD -> EURUSD
+2025-08-13 00:30:06,996 - ib_connector - ERROR - ❌ Erreur qualification contrat: This event loop is already running
+2025-08-13 00:30:06,996 - ib_connector - ERROR - ❌ Contrat EUR.USD non qualifié
+2025-08-13 00:30:06,997 - ib_connector - INFO - ✅ Contrat FOREX créé: GBP.USD -> GBPUSD
+2025-08-13 00:30:06,997 - ib_connector - ERROR - ❌ Erreur qualification contrat: This event loop is already running
+2025-08-13 00:30:06,997 - ib_connector - ERROR - ❌ Contrat GBP.USD non qualifié
+2025-08-13 00:30:06,997 - ib_connector - INFO - ✅ Contrat FOREX créé: USD.JPY -> USDJPY
+2025-08-13 00:30:06,998 - ib_connector - ERROR - ❌ Erreur qualification contrat: This event loop is already running
+2025-08-13 00:30:06,998 - ib_connector - ERROR - ❌ Contrat USD.JPY non qualifié
+2025-08-13 00:30:06,999 - ib_connector - INFO - ✅ Contrat FOREX créé: AUD.USD -> AUDUSD
+2025-08-13 00:30:06,999 - ib_connector - ERROR - ❌ Erreur qualification contrat: This event loop is already running
+2025-08-13 00:30:06,999 - ib_connector - ERROR - ❌ Contrat AUD.USD non qualifié
+2025-08-13 00:30:06,999 - ib_connector - INFO - ✅ Contrat FOREX créé: USD.CHF -> USDCHF
+2025-08-13 00:30:07,000 - ib_connector - ERROR - ❌ Erreur qualification contrat: This event loop is already running
+2025-08-13 00:30:07,000 - ib_connector - ERROR - ❌ Contrat USD.CHF non qualifié
+2025-08-13 00:30:07,000 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:32:03,179 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:33:07,008 - __main__ - INFO - 🛑 Arrêt du bot en cours...
+2025-08-13 00:33:07,008 - __main__ - INFO - ⏰ Durée totale: 0:03:00
+2025-08-13 00:33:07,008 - __main__ - INFO - 🔄 Cycles total: 1
+2025-08-13 00:33:07,009 - __main__ - INFO - 📊 RAPPORT FINAL:
+2025-08-13 00:33:07,009 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:33:07,011 - ib_connector - INFO - 🔌 Déconnecté d'IB
+2025-08-13 00:33:07,011 - __main__ - INFO - ✅ Bot arrêté proprement
+2025-08-13 00:36:26,528 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:36:26,528 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:36:26,528 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:36:26,529 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:36:26,529 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:36:26,529 - __main__ - INFO - ============================================================
+2025-08-13 00:36:26,532 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:36:26,532 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:36:26,533 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:36:26,533 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:36:26,533 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:36:26,843 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:36:26,843 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:36:26,844 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:36:26,844 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:36:26,845 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:36:26,845 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:36:26,845 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:36:26,846 - __main__ - INFO - 📊 === CYCLE #1 - 00:36:26 ===
+2025-08-13 00:36:26,846 - ib_connector - INFO - ✅ Contrat FOREX: EUR.USD -> EURUSD
+2025-08-13 00:36:26,846 - ib_connector - ERROR - ❌ Erreur données EUR.USD: This event loop is already running
+2025-08-13 00:36:26,847 - ib_connector - INFO - ✅ Contrat FOREX: GBP.USD -> GBPUSD
+2025-08-13 00:36:26,847 - ib_connector - ERROR - ❌ Erreur données GBP.USD: This event loop is already running
+2025-08-13 00:36:26,848 - ib_connector - INFO - ✅ Contrat FOREX: USD.JPY -> USDJPY
+2025-08-13 00:36:26,848 - ib_connector - ERROR - ❌ Erreur données USD.JPY: This event loop is already running
+2025-08-13 00:36:26,848 - ib_connector - INFO - ✅ Contrat FOREX: AUD.USD -> AUDUSD
+2025-08-13 00:36:26,848 - ib_connector - ERROR - ❌ Erreur données AUD.USD: This event loop is already running
+2025-08-13 00:36:26,849 - ib_connector - INFO - ✅ Contrat FOREX: USD.CHF -> USDCHF
+2025-08-13 00:36:26,849 - ib_connector - ERROR - ❌ Erreur données USD.CHF: This event loop is already running
+2025-08-13 00:36:26,849 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:36:28,065 - ib_insync.wrapper - ERROR - Error 162, reqId 5: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for GBP/CASH@FXSUBPIP Last 1d, contract: Forex('GBPUSD', exchange='IDEALPRO')
+2025-08-13 00:36:28,229 - ib_insync.wrapper - ERROR - Error 162, reqId 4: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for EUR/CASH@FXSUBPIP Last 1d, contract: Forex('EURUSD', exchange='IDEALPRO')
+2025-08-13 00:36:28,229 - ib_insync.wrapper - ERROR - Error 162, reqId 6: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDJPY', exchange='IDEALPRO')
+2025-08-13 00:36:28,230 - ib_insync.wrapper - ERROR - Error 162, reqId 8: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDCHF', exchange='IDEALPRO')
+2025-08-13 00:36:28,230 - ib_insync.wrapper - ERROR - Error 162, reqId 7: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for AUD/CASH@FXSUBPIP Last 1d, contract: Forex('AUDUSD', exchange='IDEALPRO')
+2025-08-13 00:39:31,672 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:39:31,672 - risk_manager - INFO -    Stop Loss: 1.0%
+2025-08-13 00:39:31,673 - risk_manager - INFO -    Take Profit: 1.0%
+2025-08-13 00:39:31,673 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:39:31,673 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:39:31,673 - __main__ - INFO - ============================================================
+2025-08-13 00:39:31,676 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:39:31,677 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:39:31,677 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:39:31,677 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:39:31,678 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:39:32,000 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:39:32,001 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:39:32,002 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:39:32,002 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -1.0%
+🎯 Take Profit: 1.0%
+==================================================
+2025-08-13 00:39:32,006 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:39:32,010 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:39:32,013 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:39:32,015 - __main__ - INFO - 📊 === CYCLE #1 - 00:39:32 ===
+2025-08-13 00:39:32,015 - ib_connector - INFO - ✅ Contrat FOREX: EUR.USD -> EURUSD
+2025-08-13 00:39:32,016 - ib_connector - ERROR - ❌ Erreur données EUR.USD: This event loop is already running
+2025-08-13 00:39:32,016 - ib_connector - INFO - ✅ Contrat FOREX: GBP.USD -> GBPUSD
+2025-08-13 00:39:32,017 - ib_connector - ERROR - ❌ Erreur données GBP.USD: This event loop is already running
+2025-08-13 00:39:32,018 - ib_connector - INFO - ✅ Contrat FOREX: USD.JPY -> USDJPY
+2025-08-13 00:39:32,019 - ib_connector - ERROR - ❌ Erreur données USD.JPY: This event loop is already running
+2025-08-13 00:39:32,019 - ib_connector - INFO - ✅ Contrat FOREX: AUD.USD -> AUDUSD
+2025-08-13 00:39:32,020 - ib_connector - ERROR - ❌ Erreur données AUD.USD: This event loop is already running
+2025-08-13 00:39:32,021 - ib_connector - INFO - ✅ Contrat FOREX: USD.CHF -> USDCHF
+2025-08-13 00:39:32,021 - ib_connector - ERROR - ❌ Erreur données USD.CHF: This event loop is already running
+2025-08-13 00:39:32,022 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:39:32,370 - ib_insync.wrapper - ERROR - Error 162, reqId 4: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for EUR/CASH@FXSUBPIP Last 1d, contract: Forex('EURUSD', exchange='IDEALPRO')
+2025-08-13 00:39:32,532 - ib_insync.wrapper - ERROR - Error 162, reqId 5: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for GBP/CASH@FXSUBPIP Last 1d, contract: Forex('GBPUSD', exchange='IDEALPRO')
+2025-08-13 00:39:32,533 - ib_insync.wrapper - ERROR - Error 162, reqId 6: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDJPY', exchange='IDEALPRO')
+2025-08-13 00:39:32,534 - ib_insync.wrapper - ERROR - Error 162, reqId 7: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for AUD/CASH@FXSUBPIP Last 1d, contract: Forex('AUDUSD', exchange='IDEALPRO')
+2025-08-13 00:39:32,536 - ib_insync.wrapper - ERROR - Error 162, reqId 8: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDCHF', exchange='IDEALPRO')
+2025-08-13 00:42:32,027 - __main__ - INFO - 📊 === CYCLE #2 - 00:42:32 ===
+2025-08-13 00:42:32,028 - ib_connector - INFO - ✅ Contrat FOREX: EUR.USD -> EURUSD
+2025-08-13 00:42:32,028 - ib_connector - ERROR - ❌ Erreur données EUR.USD: This event loop is already running
+2025-08-13 00:42:32,029 - ib_connector - INFO - ✅ Contrat FOREX: GBP.USD -> GBPUSD
+2025-08-13 00:42:32,029 - ib_connector - ERROR - ❌ Erreur données GBP.USD: This event loop is already running
+2025-08-13 00:42:32,030 - ib_connector - INFO - ✅ Contrat FOREX: USD.JPY -> USDJPY
+2025-08-13 00:42:32,030 - ib_connector - ERROR - ❌ Erreur données USD.JPY: This event loop is already running
+2025-08-13 00:42:32,031 - ib_connector - INFO - ✅ Contrat FOREX: AUD.USD -> AUDUSD
+2025-08-13 00:42:32,031 - ib_connector - ERROR - ❌ Erreur données AUD.USD: This event loop is already running
+2025-08-13 00:42:32,032 - ib_connector - INFO - ✅ Contrat FOREX: USD.CHF -> USDCHF
+2025-08-13 00:42:32,032 - ib_connector - ERROR - ❌ Erreur données USD.CHF: This event loop is already running
+2025-08-13 00:42:32,032 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 180s
+2025-08-13 00:42:32,266 - ib_insync.wrapper - ERROR - Error 162, reqId 9: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for EUR/CASH@FXSUBPIP Last 1d, contract: Forex('EURUSD', exchange='IDEALPRO')
+2025-08-13 00:42:32,377 - ib_insync.wrapper - ERROR - Error 162, reqId 10: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for GBP/CASH@FXSUBPIP Last 1d, contract: Forex('GBPUSD', exchange='IDEALPRO')
+2025-08-13 00:42:32,496 - ib_insync.wrapper - ERROR - Error 162, reqId 12: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for AUD/CASH@FXSUBPIP Last 1d, contract: Forex('AUDUSD', exchange='IDEALPRO')
+2025-08-13 00:42:32,645 - ib_insync.wrapper - ERROR - Error 162, reqId 13: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDCHF', exchange='IDEALPRO')
+2025-08-13 00:42:32,647 - ib_insync.wrapper - ERROR - Error 162, reqId 11: Message d'erreur Service Donn\u00e9es de March\u00e9 Historiques:No historical market data for USD/CASH@FXSUBPIP Last 1d, contract: Forex('USDJPY', exchange='IDEALPRO')
+2025-08-13 00:42:36,051 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:46:43,427 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:46:43,428 - risk_manager - INFO -    Stop Loss: 2.0%
+2025-08-13 00:46:43,428 - risk_manager - INFO -    Take Profit: 3.0%
+2025-08-13 00:46:43,428 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:46:43,428 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:46:43,429 - __main__ - INFO - ============================================================
+2025-08-13 00:46:43,431 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:46:43,432 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:46:43,432 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:46:43,432 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:46:43,432 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:46:43,555 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:46:43,555 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:46:43,556 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:46:43,556 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -2.0%
+🎯 Take Profit: 3.0%
+==================================================
+2025-08-13 00:46:43,558 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:46:43,558 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:46:43,559 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:46:43,559 - __main__ - INFO - 📊 === CYCLE #1 - 00:46:43 ===
+2025-08-13 00:46:43,560 - ib_connector - ERROR - ❌ Erreur données AAPL: This event loop is already running
+2025-08-13 00:46:43,560 - ib_connector - ERROR - ❌ Erreur données MSFT: This event loop is already running
+2025-08-13 00:46:43,561 - ib_connector - ERROR - ❌ Erreur données GOOGL: This event loop is already running
+2025-08-13 00:46:43,561 - ib_connector - ERROR - ❌ Erreur données TSLA: This event loop is already running
+2025-08-13 00:46:43,562 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 300s

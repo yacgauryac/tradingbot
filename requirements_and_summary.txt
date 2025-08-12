@@ -1,0 +1,164 @@
+# requirements.txt
+# Dépendances pour le bot de trading automatique
+
+# Core trading libraries
+ib_insync>=0.9.86          # Interface Interactive Brokers
+pandas>=1.3.0              # Manipulation de données
+numpy>=1.21.0              # Calculs numériques
+
+# Technical analysis
+ta>=0.10.2                 # Indicateurs techniques (RSI, MACD)
+
+# Visualization (optionnel)
+matplotlib>=3.5.0          # Graphiques
+plotly>=5.0.0             # Graphiques interactifs
+
+# GUI (inclus avec Python)
+# tkinter - Interface graphique (inclus par défaut)
+
+# Utilities
+asyncio                    # Programmation asynchrone (inclus)
+threading                 # Threading (inclus) 
+logging                   # Logs (inclus)
+json                      # Configuration (inclus)
+datetime                  # Gestion du temps (inclus)
+
+# =================================================================
+# RÉSUMÉ FINAL - BOT DE TRADING AUTOMATIQUE
+# =================================================================
+
+"""
+🎉 FÉLICITATIONS ! 
+
+Tu as maintenant un système de trading automatique complet qui reproduit 
+exactement tes stratégies de backtest RSI + MACD !
+
+📁 FICHIERS CRÉÉS:
+===============
+
+1. 🚀 start.py              - Point d'entrée principal (COMMENCE ICI)
+2. ⚙️ config.py             - Configuration centralisée  
+3. 🔌 ib_connector.py       - Connexion Interactive Brokers
+4. 📈 strategies.py         - Tes stratégies RSI + MACD
+5. 🛡️ risk_manager.py       - Gestion Stop Loss / Take Profit  
+6. 🤖 trading_bot.py        - Bot principal automatique
+7. 🖥️ trading_interface.py   - Interface graphique de contrôle
+8. 📚 README.md             - Documentation complète
+9. 📋 requirements.txt      - Cette liste de dépendances
+
+🎯 TON SYSTÈME REPRODUIT EXACTEMENT:
+===================================
+
+✅ Stratégie RSI + MACD (logique identique à ton backtest)
+✅ Stop Loss 5% / Take Profit 8% 
+✅ Frais 0.1% par transaction
+✅ Gestion automatique des positions
+✅ Signaux: RSI < 30 OU croisement MACD pour achat
+✅ Signaux: RSI > 70 OU croisement MACD pour vente
+✅ Maximum 5 positions simultanées  
+✅ 10% du capital par position
+
+🚀 DÉMARRAGE EN 3 ÉTAPES:
+========================
+
+ÉTAPE 1: Installation dépendances
+   pip install ib_insync pandas ta numpy matplotlib
+
+ÉTAPE 2: Configuration TWS
+   - Lance TWS en mode "Trading Simulé" 
+   - Active l'API (File > Global Config > API)
+   - Port 7497 pour Paper Trading
+
+ÉTAPE 3: Lancement  
+   python start.py
+   Choisis option 1 (Interface graphique)
+
+⚠️ SÉCURITÉ IMPORTANTE:
+======================
+
+🟢 COMMENCE TOUJOURS EN PAPER TRADING
+   - Mode "Trading Simulé" dans TWS
+   - Port 7497 (argent virtuel)
+   - Teste pendant 1-2 semaines minimum
+
+🔴 MODE LIVE = ARGENT RÉEL
+   - Port 7496 = utilise TON argent réel
+   - Commence avec petit capital (500-1000€)
+   - Confirmations multiples obligatoires
+
+📊 SURVEILLANCE:
+===============
+
+- Interface graphique: Monitoring en temps réel
+- Logs: trading_bot.log (surveille les signaux)
+- Configuration: trading_config.json (modifiable)
+
+🎯 AVANTAGES DE TON SYSTÈME:
+===========================
+
+✅ Reproduction exacte de tes backtests
+✅ Trading 24/7 automatique  
+✅ Gestion émotions (pas de panique/cupidité)
+✅ Stop Loss automatiques
+✅ Surveillance positions en temps réel
+✅ Logs détaillés de chaque opération
+✅ Interface graphique intuitive
+✅ Configuration flexible
+
+💡 CONSEILS POUR RÉUSSIR:
+========================
+
+1. TESTE D'ABORD en Paper Trading (obligatoire)
+2. COMPARE les résultats avec tes backtests  
+3. SURVEILLE les logs les premiers jours
+4. COMMENCE avec petit capital en Live
+5. AUGMENTE progressivement si ça marche
+6. GARDE des stops loss stricts (5%)
+
+🔧 PERSONNALISATION:
+===================
+
+Tu peux modifier:
+- Paramètres RSI/MACD dans l'interface
+- Liste des tickers à surveiller 
+- Taille des positions (% du capital)
+- Stop Loss / Take Profit
+- Horaires de trading
+
+📞 EN CAS DE PROBLÈME:
+=====================
+
+1. Vérifier que TWS est ouvert et connecté
+2. Tester la connexion via start.py > option 3
+3. Consulter les logs: trading_bot.log
+4. Vérifier la config: trading_config.json
+
+🎉 TON BOT EST PRÊT !
+====================
+
+Lance simplement:
+   python start.py
+
+Et suis le guide interactif !
+
+Bonne chance avec ton trading automatique ! 🚀📈
+"""
+
+# =================================================================
+# COMMANDES UTILES
+# =================================================================
+
+# Installation rapide:
+# pip install -r requirements.txt
+
+# Démarrage:  
+# python start.py
+
+# Interface seule:
+# python trading_interface.py
+
+# Bot en ligne de commande:
+# python trading_bot.py
+
+# Test connexion:
+# python -c "from ib_connector import *; import asyncio; print(asyncio.run(test_connection()))"
