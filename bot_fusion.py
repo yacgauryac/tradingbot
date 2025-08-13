@@ -29,6 +29,18 @@ class TradingBot:
         print(f"   RSI: {self.rsi_window} périodes, seuils {self.rsi_oversold}/{self.rsi_overbought}")
         print(f"   MACD: {self.macd_fast}/{self.macd_slow}/{self.macd_signal}")
         
+        # Contexte technique des actions breakout
+        self.breakout_context = {
+            'CSCO': 'En zone d\'achat, breakout',
+            'GOOGL': 'Breakout, nouvelle zone d\'achat', 
+            'META': 'Dans l\'indice IBD Breakout',
+            'MSFT': 'Breakout momentum',
+            'APP': 'Proche du point d\'achat',
+            'BYDDY': 'Fort momentum EV ; zone favorable',
+            'BSX': 'Structure technique favorable + fondamentaux',
+            'LBRT': 'Zone d\'achat solide, bon momentum'
+        }
+        
     def connect(self):
         """Connexion à Interactive Brokers"""
         try:
@@ -181,8 +193,13 @@ class TradingBot:
             
             confidence = min(confidence, 1.0)
             
-            # 7. Affichage résultats
+            # 7. Affichage résultats avec contexte technique
             print(f"💰 {symbol}: ${current_price:.2f}")
+            
+            # Contexte technique si disponible
+            if hasattr(self, 'breakout_context') and symbol in self.breakout_context:
+                print(f"🎯 Contexte: {self.breakout_context[symbol]}")
+            
             print(f"📈 RSI: {current_rsi:.1f} | MACD: {current_macd:.4f} | Signal: {current_signal:.4f}")
             
             # Signaux
@@ -247,7 +264,7 @@ class TradingBot:
             # Pause entre requêtes
             time.sleep(0.5)
         
-        # Résumé final
+        # Résumé final avec priorité breakout
         print(f"\n" + "=" * 50)
         print(f"📊 RÉSUMÉ DU SCAN")
         print(f"   Symboles analysés: {len(results)}")
@@ -255,8 +272,20 @@ class TradingBot:
         
         if signals_found:
             print(f"\n🚨 SIGNAUX ACTIFS:")
-            for signal in signals_found:
-                print(f"   {signal}")
+            
+            # Priorité aux actions breakout avec signaux
+            breakout_signals = [s for s in signals_found if any(symbol in s for symbol in self.breakout_context.keys())]
+            other_signals = [s for s in signals_found if s not in breakout_signals]
+            
+            if breakout_signals:
+                print(f"   🎯 ACTIONS BREAKOUT:")
+                for signal in breakout_signals:
+                    print(f"   {signal} ⭐")
+            
+            if other_signals:
+                print(f"   📊 AUTRES ACTIONS:")
+                for signal in other_signals:
+                    print(f"   {signal}")
         else:
             print(f"\n⏸️ Aucun signal détecté pour le moment")
         
@@ -296,6 +325,30 @@ def main():
     # Choix de la watchlist
     print("📋 Watchlists disponibles:")
     print("1. 🎯 Actions BREAKOUT technique (CSCO, GOOGL, META, MSFT...)")
+    print("2. 📉 Actions RSI < 30 (ACVA, AIV, CE...)")
+    print("3. 📊 Actions classiques (AAPL, TSLA, NVDA...)")
+    print("4. 🇫🇷 Actions françaises (MC.PA, OR.PA...)")
+    print("5. 🔥 TOUT analyser (breakout + RSI + classiques)")
+    
+    choice = input("\nVotre choix (1/2/3/4/5) [1]: ").strip() or "1"
+    
+    if choice == "1":
+        watchlist = list(BREAKOUT_STOCKS.keys())
+        print(f"\n🎯 WATCHLIST BREAKOUT sélectionnée:")
+        for symbol, desc in BREAKOUT_STOCKS.items():
+            print(f"   {symbol}: {desc}")
+    elif choice == "2":
+        watchlist = RSI_OVERSOLD
+        print(f"\n📉 WATCHLIST RSI < 30 sélectionnée (retournement potentiel)")
+    elif choice == "3":
+        watchlist = CLASSIC_STOCKS
+    elif choice == "4":
+        watchlist = FR_STOCKS
+    elif choice == "5":
+        watchlist = list(BREAKOUT_STOCKS.keys()) + RSI_OVERSOLD + CLASSIC_STOCKS
+        print(f"\n🔥 ANALYSE COMPLÈTE: {len(watchlist)} actions")
+    else:
+        watchlist = list(BREAKOUT_STOCKS.keys())
     
     print(f"\n🎯 Watchlist sélectionnée: {len(watchlist)} symboles")
     

@@ -1,0 +1,5 @@
+Symbol: CE
+Quantity: 23.0
+Entry_Price: 42.46
+Entry_Date: 2025-08-13 21:02:12.916209
+Order_ID: 5
