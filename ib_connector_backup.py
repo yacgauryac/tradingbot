@@ -1,4 +1,4 @@
-# ib_connector.py - Gestionnaire de connexion Interactive Brokers
+# ib_connector.py - Version finale FOREX
 import asyncio
 import logging
 import pandas as pd
@@ -17,7 +17,7 @@ class IBConnector:
         self.ib = IB()
         self.is_connected = False
         self.account_info = {}
-        self.contracts_cache = {}  # Cache des contrats pour éviter les re-qualifications
+        self.contracts_cache = {}
         
     async def connect(self) -> bool:
         """Connexion à Interactive Brokers"""
@@ -37,8 +37,29 @@ class IBConnector:
             self.is_connected = True
             logger.info("✅ Connexion IB réussie!")
             
-            # Récupération info compte
-            await self.update_account_info()
+            # Récupération info compte (version simple)
+            try:
+                account_summary = self.ib.accountSummary()
+                self.account_info = {}
+                
+                for item in account_summary:
+                    try:
+                        value = float(item.value) if item.value.replace('.', '').replace('-', '').isdigit() else item.value
+                    except:
+                        value = item.value
+                    
+                    self.account_info[item.tag] = {
+                        'value': value,
+                        'currency': item.currency
+                    }
+                
+                net_liquidation = self.account_info.get('NetLiquidation', {}).get('value', 0)
+                currency = self.account_info.get('NetLiquidation', {}).get('currency', 'USD')
+                
+                logger.info(f"💰 Valeur compte: {net_liquidation:,.2f} {currency}")
+                
+            except Exception as e:
+                logger.warning(f"⚠️ Erreur récupération compte (pas grave): {e}")
             
             return True
             
@@ -54,55 +75,30 @@ class IBConnector:
             self.is_connected = False
             logger.info("🔌 Déconnecté d'IB")
     
-    async def update_account_info(self):
-        """Met à jour les informations du compte"""
-        try:
-            account_summary = self.ib.accountSummary()
-            self.account_info = {}
-            
-            for item in account_summary:
-                self.account_info[item.tag] = {
-                    'value': float(item.value) if item.value.replace('.', '').replace('-', '').isdigit() else item.value,
-                    'currency': item.currency
-                }
-            
-            # Log des infos importantes
-            net_liquidation = self.account_info.get('NetLiquidation', {}).get('value', 0)
-            available_funds = self.account_info.get('AvailableFunds', {}).get('value', 0)
-            currency = self.account_info.get('NetLiquidation', {}).get('currency', 'EUR')
-            
-            logger.info(f"💰 Valeur compte: {net_liquidation:,.2f} {currency}")
-            logger.info(f"💳 Fonds disponibles: {available_funds:,.2f} {currency}")
-            
-        except Exception as e:
-            logger.error(f"❌ Erreur récupération compte: {e}")
-    
     def create_contract(self, symbol: str) -> Optional[Contract]:
-        """Crée un contrat pour un symbole"""
-        # Utilise le cache si disponible
-        if symbol in self.contracts_cache:
-            return self.contracts_cache[symbol]
-        
+        """Crée un contrat pour un symbole (version simple)"""
         try:
-            if symbol.endswith('.PA'):
-                # Actions françaises (CAC40)
+            contract = None
+            
+            # FOREX - Format "EUR.USD" 
+            if "." in symbol and len(symbol) == 7:
+                base, quote = symbol.split(".")
+                if len(base) == 3 and len(quote) == 3:
+                    forex_symbol = base + quote  # "EUR.USD" -> "EURUSD"
+                    contract = Forex(forex_symbol)
+                    logger.info(f"✅ Contrat FOREX: {symbol} -> {forex_symbol}")
+            
+            # Actions françaises (CAC40)
+            elif symbol.endswith('.PA'):
                 base_symbol = symbol.replace('.PA', '')
                 contract = Stock(base_symbol, 'SBF', 'EUR')
-            elif symbol.endswith('.US'):
-                # Actions américaines
-                base_symbol = symbol.replace('.US', '')
-                contract = Stock(base_symbol, 'SMART', 'USD')
+                logger.debug(f"✅ Contrat FR: {symbol}")
+            
+            # Actions américaines
             else:
-                # Par défaut, essaie SMART
                 contract = Stock(symbol, 'SMART', 'USD')
+                logger.debug(f"✅ Contrat US: {symbol}")
             
-            # Qualification du contrat
-            self.ib.qualifyContracts(contract)
-            
-            # Mise en cache
-            self.contracts_cache[symbol] = contract
-            
-            logger.debug(f"✅ Contrat créé pour {symbol}: {contract}")
             return contract
             
         except Exception as e:
@@ -111,12 +107,16 @@ class IBConnector:
     
     async def get_historical_data(self, symbol: str, duration: str = '30 D', 
                                 bar_size: str = '1 day') -> Optional[pd.DataFrame]:
-        """Récupère les données historiques"""
+        """Récupère les données historiques avec qualification intégrée"""
         contract = self.create_contract(symbol)
         if not contract:
+            logger.error(f"❌ Pas de contrat pour {symbol}")
             return None
         
         try:
+            # Qualification + données en une seule fois
+            logger.debug(f"📡 Récupération données {symbol}...")
+            
             bars = self.ib.reqHistoricalData(
                 contract=contract,
                 endDateTime='',
@@ -128,45 +128,56 @@ class IBConnector:
             )
             
             if not bars:
-                logger.warning(f"⚠️  Aucune donnée historique pour {symbol}")
+                logger.warning(f"⚠️ Aucune donnée pour {symbol}")
                 return None
             
             # Conversion en DataFrame
             df = util.df(bars)
+            if len(df) == 0:
+                logger.warning(f"⚠️ DataFrame vide pour {symbol}")
+                return None
+                
             df.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
             df.set_index('date', inplace=True)
             df.index = pd.to_datetime(df.index)
             
-            logger.debug(f"📊 Données {symbol}: {len(df)} barres de {bars[0].date} à {bars[-1].date}")
+            logger.info(f"📊 Données {symbol}: {len(df)} barres OK!")
+            
+            # Mise en cache du contrat qualifié
+            self.contracts_cache[symbol] = contract
+            
             return df
             
         except Exception as e:
-            logger.error(f"❌ Erreur données historiques {symbol}: {e}")
+            logger.error(f"❌ Erreur données {symbol}: {e}")
             return None
     
     async def get_current_price(self, symbol: str) -> Optional[float]:
-        """Récupère le prix actuel d'un symbole"""
+        """Récupère le prix actuel"""
         contract = self.create_contract(symbol)
         if not contract:
             return None
         
         try:
             ticker = self.ib.reqMktData(contract, '', False, False)
-            await asyncio.sleep(2)  # Attendre les données
+            await asyncio.sleep(2)
             
+            price = None
             if ticker.last and ticker.last > 0:
                 price = ticker.last
             elif ticker.close and ticker.close > 0:
                 price = ticker.close
-            else:
-                logger.warning(f"⚠️  Pas de prix disponible pour {symbol}")
-                return None
+            elif ticker.bid and ticker.ask and ticker.bid > 0 and ticker.ask > 0:
+                price = (ticker.bid + ticker.ask) / 2
             
-            # Arrêt du stream de données
             self.ib.cancelMktData(contract)
             
-            logger.debug(f"💱 Prix {symbol}: {price}")
-            return price
+            if price:
+                logger.debug(f"💱 Prix {symbol}: {price:.4f}")
+                return price
+            else:
+                logger.warning(f"⚠️ Pas de prix pour {symbol}")
+                return None
             
         except Exception as e:
             logger.error(f"❌ Erreur prix {symbol}: {e}")
@@ -182,12 +193,9 @@ class IBConnector:
                 if pos.position == 0:
                     continue
                 
-                # Reconstruction du symbole
                 symbol = pos.contract.symbol
-                if pos.contract.exchange == 'SBF':
+                if hasattr(pos.contract, 'exchange') and pos.contract.exchange == 'SBF':
                     symbol += '.PA'
-                elif pos.contract.exchange in ['NASDAQ', 'NYSE']:
-                    symbol += '.US'
                 
                 current_positions[symbol] = {
                     'quantity': pos.position,
@@ -198,37 +206,26 @@ class IBConnector:
                     'contract': pos.contract
                 }
             
-            logger.debug(f"📊 Positions actuelles: {len(current_positions)}")
             return current_positions
             
         except Exception as e:
-            logger.error(f"❌ Erreur récupération positions: {e}")
+            logger.error(f"❌ Erreur positions: {e}")
             return {}
     
     async def place_order(self, symbol: str, action: str, quantity: int, 
                          order_type: str = 'MKT') -> Optional[Trade]:
         """Passe un ordre"""
-        contract = self.create_contract(symbol)
+        # Utilise le contrat en cache ou en crée un nouveau
+        contract = self.contracts_cache.get(symbol) or self.create_contract(symbol)
         if not contract:
-            logger.error(f"❌ Impossible de créer contrat pour {symbol}")
+            logger.error(f"❌ Pas de contrat pour ordre {symbol}")
             return None
         
         try:
-            # Création de l'ordre selon le type
-            if order_type == 'MKT':
-                order = MarketOrder(action.upper(), quantity)
-            elif order_type == 'LMT':
-                # Pour les ordres limites, il faudrait ajouter le prix
-                order = MarketOrder(action.upper(), quantity)  # Fallback sur market
-            else:
-                order = MarketOrder(action.upper(), quantity)
-            
-            # Passage de l'ordre
+            order = MarketOrder(action.upper(), quantity)
             trade = self.ib.placeOrder(contract, order)
             
-            logger.info(f"📋 Ordre passé: {action} {quantity} {symbol} (ID: {trade.order.orderId})")
-            
-            # Attente de confirmation
+            logger.info(f"📋 Ordre: {action} {quantity} {symbol} (ID: {trade.order.orderId})")
             await asyncio.sleep(1)
             
             return trade
@@ -238,37 +235,33 @@ class IBConnector:
             return None
     
     def calculate_position_size(self, price: float) -> int:
-        """Calcule la taille de position selon la configuration"""
+        """Calcule la taille de position"""
         try:
-            # Récupération du capital disponible
-            available_funds = self.account_info.get('AvailableFunds', {}).get('value', 
-                                                   self.config.trading_config.capital_initial)
+            available = self.account_info.get('AvailableFunds', {}).get('value', 
+                                             self.config.trading_config.capital_initial)
             
-            # Calcul de l'investissement maximum par position
-            max_investment = available_funds * self.config.trading_config.position_size_pct
+            max_investment = available * self.config.trading_config.position_size_pct
             
-            # Calcul du nombre d'actions
-            quantity = int(max_investment / price)
+            # Pour FOREX: taille en unités de devise
+            if price < 10:  # Probablement FOREX (EUR/USD ~1.08)
+                quantity = int(max_investment / price)
+            else:  # Actions (AAPL ~$185)
+                quantity = int(max_investment / price)
             
-            # Minimum 1 action
             quantity = max(1, quantity)
-            
-            logger.debug(f"💰 Taille position: {quantity} actions à {price:.2f}€ = {quantity * price:.2f}€")
+            logger.debug(f"💰 Position: {quantity} à {price:.4f}")
             return quantity
             
         except Exception as e:
             logger.error(f"❌ Erreur calcul position: {e}")
-            return 1
+            return 1000  # Default pour FOREX
     
     def is_market_open(self) -> bool:
         """Vérifie si le marché est ouvert"""
         now = datetime.now()
         current_time = now.hour + now.minute / 60.0
         
-        # Vérification jour ouvrable (lundi=0, dimanche=6)
         is_weekday = now.weekday() < 5
-        
-        # Vérification heures
         is_trading_hours = (self.config.system_config.market_open_hour <= 
                            current_time <= 
                            self.config.system_config.market_close_hour)
@@ -276,51 +269,8 @@ class IBConnector:
         return is_weekday and is_trading_hours
     
     async def health_check(self) -> bool:
-        """Vérification de l'état de la connexion"""
+        """Vérification connexion"""
         try:
-            if not self.is_connected or not self.ib.isConnected():
-                return False
-            
-            # Test simple avec une requête
-            account_summary = self.ib.accountSummary()
-            return len(account_summary) > 0
-            
-        except Exception as e:
-            logger.error(f"❌ Health check échoué: {e}")
+            return self.is_connected and self.ib.isConnected()
+        except:
             return False
-
-# Test du module
-if __name__ == "__main__":
-    async def test_connector():
-        config = ConfigManager()
-        connector = IBConnector(config)
-        
-        print("🧪 Test du connecteur IB...")
-        
-        # Test connexion
-        if await connector.connect():
-            print("✅ Connexion OK")
-            
-            # Test données historiques
-            df = await connector.get_historical_data('TTE.PA', '5 D')
-            if df is not None:
-                print(f"✅ Données historiques: {len(df)} jours")
-                print(f"   Dernier cours: {df['close'].iloc[-1]:.2f}€")
-            
-            # Test prix actuel
-            price = await connector.get_current_price('TTE.PA')
-            if price:
-                print(f"✅ Prix actuel TTE: {price:.2f}€")
-            
-            # Test positions
-            positions = connector.get_positions()
-            print(f"✅ Positions: {len(positions)}")
-            
-            await connector.disconnect()
-        else:
-            print("❌ Échec connexion")
-    
-    # Configuration du logging pour les tests
-    logging.basicConfig(level=logging.INFO)
-    
-    asyncio.run(test_connector())

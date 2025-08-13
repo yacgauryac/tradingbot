@@ -107,10 +107,44 @@ class IBConnector:
     
     async def get_historical_data(self, symbol: str, duration: str = '30 D', 
                                 bar_size: str = '1 day') -> Optional[pd.DataFrame]:
-        """Récupère les données historiques avec qualification intégrée"""
+        """Récupère les données historiques - VERSION CORRIGÉE"""
         contract = self.create_contract(symbol)
         if not contract:
-            logger.error(f"❌ Pas de contrat pour {symbol}")
+            return None
+        
+        try:
+            logger.debug(f"📡 Récupération données {symbol}...")
+            
+            # Utilisation synchrone pour éviter l'event loop conflict
+            bars = self.ib.reqHistoricalData(
+                contract=contract,
+                endDateTime='',
+                durationStr=duration,
+                barSizeSetting=bar_size,
+                whatToShow='TRADES',
+                useRTH=True,
+                formatDate=1
+            )
+            
+            if not bars:
+                logger.warning(f"⚠️ Aucune donnée pour {symbol}")
+                return None
+            
+            # Conversion en DataFrame
+            df = util.df(bars)
+            if len(df) == 0:
+                logger.warning(f"⚠️ DataFrame vide pour {symbol}")
+                return None
+                
+            df.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
+            df.set_index('date', inplace=True)
+            df.index = pd.to_datetime(df.index)
+            
+            logger.info(f"📊 Données {symbol}: {len(df)} barres récupérées !")
+            return df
+            
+        except Exception as e:
+            logger.error(f"❌ Erreur données {symbol}: {e}")
             return None
         
         try:
@@ -153,9 +187,36 @@ class IBConnector:
             return None
     
     async def get_current_price(self, symbol: str) -> Optional[float]:
-        """Récupère le prix actuel"""
+        """Récupère le prix actuel - VERSION CORRIGÉE"""
         contract = self.create_contract(symbol)
         if not contract:
+            return None
+        
+        try:
+            ticker = self.ib.reqMktData(contract, '', False, False)
+            # Attente synchrone simple
+            import time
+            time.sleep(2)
+            
+            price = None
+            if ticker.last and ticker.last > 0:
+                price = ticker.last
+            elif ticker.close and ticker.close > 0:
+                price = ticker.close
+            elif ticker.bid and ticker.ask and ticker.bid > 0 and ticker.ask > 0:
+                price = (ticker.bid + ticker.ask) / 2
+            
+            self.ib.cancelMktData(contract)
+            
+            if price:
+                logger.debug(f"💱 Prix {symbol}: {price:.4f}")
+                return price
+            else:
+                logger.warning(f"⚠️ Pas de prix pour {symbol}")
+                return None
+            
+        except Exception as e:
+            logger.error(f"❌ Erreur prix {symbol}: {e}")
             return None
         
         try:

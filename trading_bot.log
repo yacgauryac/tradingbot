@@ -518,3 +518,40 @@ P&L non réalisé: +0.00€ (+0.00%)
 2025-08-13 00:46:43,561 - ib_connector - ERROR - ❌ Erreur données GOOGL: This event loop is already running
 2025-08-13 00:46:43,561 - ib_connector - ERROR - ❌ Erreur données TSLA: This event loop is already running
 2025-08-13 00:46:43,562 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 300s
+2025-08-13 00:49:05,195 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
+2025-08-13 00:49:46,820 - risk_manager - INFO - 🛡️ Risk Manager initialisé:
+2025-08-13 00:49:46,821 - risk_manager - INFO -    Stop Loss: 2.0%
+2025-08-13 00:49:46,821 - risk_manager - INFO -    Take Profit: 3.0%
+2025-08-13 00:49:46,821 - risk_manager - INFO -    Max positions: 4
+2025-08-13 00:49:46,821 - __main__ - INFO - 🚀 DÉMARRAGE DU BOT DE TRADING
+2025-08-13 00:49:46,822 - __main__ - INFO - ============================================================
+2025-08-13 00:49:46,824 - __main__ - INFO - 🔌 Connexion à Interactive Brokers...
+2025-08-13 00:49:46,824 - ib_connector - INFO - 🔌 Tentative de connexion à IB...
+2025-08-13 00:49:46,825 - ib_connector - INFO -    Host: 127.0.0.1
+2025-08-13 00:49:46,825 - ib_connector - INFO -    Port: 7497
+2025-08-13 00:49:46,825 - ib_connector - INFO -    Mode: Paper Trading
+2025-08-13 00:49:47,144 - ib_connector - INFO - ✅ Connexion IB réussie!
+2025-08-13 00:49:47,145 - ib_connector - WARNING - ⚠️ Erreur récupération compte (pas grave): This event loop is already running
+2025-08-13 00:49:47,145 - __main__ - INFO - ✅ 0 positions synchronisées
+2025-08-13 00:49:47,145 - __main__ - INFO - ==================================================
+📊 RAPPORT DE RISQUE
+==================================================
+Positions actives: 0/4
+Capital investi: 0.00€
+P&L non réalisé: +0.00€ (+0.00%)
+
+📭 Aucune position ouverte
+
+🛑 Stop Loss: -2.0%
+🎯 Take Profit: 3.0%
+==================================================
+2025-08-13 00:49:47,147 - __main__ - INFO - ✅ Bot démarré avec succès!
+2025-08-13 00:49:47,147 - __main__ - INFO -    Pour arrêter: Ctrl+C
+2025-08-13 00:49:47,147 - __main__ - INFO - 🔄 Démarrage de la boucle principale
+2025-08-13 00:49:47,148 - __main__ - INFO - 📊 === CYCLE #1 - 00:49:47 ===
+2025-08-13 00:49:47,149 - ib_connector - ERROR - ❌ Erreur données AAPL: This event loop is already running
+2025-08-13 00:49:47,149 - ib_connector - ERROR - ❌ Erreur données MSFT: This event loop is already running
+2025-08-13 00:49:47,150 - ib_connector - ERROR - ❌ Erreur données GOOGL: This event loop is already running
+2025-08-13 00:49:47,150 - ib_connector - ERROR - ❌ Erreur données TSLA: This event loop is already running
+2025-08-13 00:49:47,151 - __main__ - INFO - ✅ Cycle terminé en 0.0s, pause 300s
+2025-08-13 00:51:43,699 - __main__ - INFO - 🛑 Signal 2 reçu, arrêt en cours...
