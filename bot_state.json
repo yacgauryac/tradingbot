@@ -1,0 +1,94 @@
+{
+  "positions": {
+    "CE": {
+      "quantity": 23,
+      "entry_price": 41.95,
+      "entry_date": "2025-08-14T20:25:01.680617",
+      "order_id": 30,
+      "analysis": {
+        "symbol": "CE",
+        "price": 41.95,
+        "rsi": 12.661613909942062,
+        "macd": -3.774158441672057,
+        "buy_signal": "True",
+        "sell_signal": "False",
+        "confidence": 0.5779462030019312,
+        "reasons": {
+          "achat_rsi": "True",
+          "achat_macd": "False",
+          "vente_rsi": "False",
+          "vente_macd": "False"
+        }
+      }
+    },
+    "AMZN": {
+      "quantity": 4,
+      "entry_price": 232.97,
+      "entry_date": "2025-08-14T20:25:03.797698",
+      "order_id": 32,
+      "analysis": {
+        "symbol": "AMZN",
+        "price": 232.97,
+        "rsi": 51.38311336105586,
+        "macd": 0.7391406842272659,
+        "buy_signal": "True",
+        "sell_signal": "False",
+        "confidence": 0.3304424220155797,
+        "reasons": {
+          "achat_rsi": "False",
+          "achat_macd": "True",
+          "vente_rsi": "False",
+          "vente_macd": "False"
+        }
+      }
+    },
+    "ACVA": {
+      "quantity": 87,
+      "entry_price": 11.47,
+      "entry_date": "2025-08-14T20:25:05.914353",
+      "order_id": 34,
+      "analysis": {
+        "symbol": "ACVA",
+        "price": 11.47,
+        "rsi": 23.143350604490507,
+        "macd": -0.9303169094037322,
+        "buy_signal": "True",
+        "sell_signal": "False",
+        "confidence": 0.22855497985031642,
+        "reasons": {
+          "achat_rsi": "True",
+          "achat_macd": "False",
+          "vente_rsi": "False",
+          "vente_macd": "False"
+        }
+      }
+    }
+  },
+  "trade_log": [
+    {
+      "timestamp": "2025-08-14T20:25:01.680638",
+      "action": "BUY",
+      "symbol": "CE",
+      "quantity": 23,
+      "price": 41.95,
+      "confidence": 0.5779462030019312
+    },
+    {
+      "timestamp": "2025-08-14T20:25:03.797708",
+      "action": "BUY",
+      "symbol": "AMZN",
+      "quantity": 4,
+      "price": 232.97,
+      "confidence": 0.3304424220155797
+    },
+    {
+      "timestamp": "2025-08-14T20:25:05.914362",
+      "action": "BUY",
+      "symbol": "ACVA",
+      "quantity": 87,
+      "price": 11.47,
+      "confidence": 0.22855497985031642
+    }
+  ],
+  "last_update": "2025-08-14T20:42:41.344464"
+}
