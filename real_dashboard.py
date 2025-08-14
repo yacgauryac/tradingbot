@@ -211,12 +211,18 @@ class RealTradingDashboard:
                         current_price = pos.avgCost
                         rsi = 50
                     
+                    # Calcul P&L manuel
+                    quantity = pos.position
+                    avg_cost = pos.avgCost
+                    unrealized_pnl = (current_price - avg_cost) * quantity
+                    market_value = current_price * quantity
+                    
                     real_positions[symbol] = {
-                        'quantity': pos.position,
-                        'avg_cost': pos.avgCost,
+                        'quantity': quantity,
+                        'avg_cost': avg_cost,
                         'current_price': current_price,
-                        'unrealized_pnl': pos.unrealizedPNL,
-                        'market_value': pos.marketValue,
+                        'unrealized_pnl': unrealized_pnl,
+                        'market_value': market_value,
                         'rsi': rsi
                     }
             
