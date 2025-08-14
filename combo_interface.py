@@ -21,20 +21,45 @@ class ComboTradingInterface:
         self.running = True
         self.positions_data = {}
         
-        # Configuration bot
-        self.bot_config = {
+        # Configuration bot - CHARGER D'ABORD
+        self.bot_config = self.load_existing_config()
+        
+        self.setup_ui()
+        self.connect_ib()
+        self.start_monitoring()
+    
+    def load_existing_config(self):
+        """Charger config existante ou créer par défaut"""
+        default_config = {
             'max_positions': 3,
             'max_investment': 1000,
             'rsi_oversold': 30,
             'rsi_overbought': 70,
             'profit_target': 5.0,
             'stop_loss': -8.0,
-            'scan_interval': 300  # 5 min
+            'scan_interval': 300
         }
         
-        self.setup_ui()
-        self.connect_ib()
-        self.start_monitoring()
+        try:
+            if os.path.exists('bot_config.json'):
+                with open('bot_config.json', 'r') as f:
+                    loaded_config = json.load(f)
+                
+                # Merger avec défauts (au cas où nouvelles clés)
+                for key, value in loaded_config.items():
+                    if key in default_config:
+                        default_config[key] = value
+                
+                print(f"✅ Config chargée depuis bot_config.json")
+                print(f"   Max positions: {default_config['max_positions']}")
+                
+            else:
+                print(f"⚠️ Création nouvelle config")
+                
+        except Exception as e:
+            print(f"❌ Erreur chargement config: {e}")
+        
+        return default_config
         
     def setup_ui(self):
         """Configuration interface utilisateur"""
@@ -140,30 +165,36 @@ class ComboTradingInterface:
         # Max positions
         tk.Label(params_frame, text="Max Positions:", width=15, anchor='e').grid(row=0, column=0, padx=5, pady=5)
         self.max_pos_var = tk.StringVar(value=str(self.bot_config['max_positions']))
-        tk.Entry(params_frame, textvariable=self.max_pos_var, width=10).grid(row=0, column=1, padx=5, pady=5)
+        max_pos_entry = tk.Entry(params_frame, textvariable=self.max_pos_var, width=10)
+        max_pos_entry.grid(row=0, column=1, padx=5, pady=5)
         
         # Max investment
         tk.Label(params_frame, text="Max Investment $:", width=15, anchor='e').grid(row=0, column=2, padx=5, pady=5)
         self.max_inv_var = tk.StringVar(value=str(self.bot_config['max_investment']))
-        tk.Entry(params_frame, textvariable=self.max_inv_var, width=10).grid(row=0, column=3, padx=5, pady=5)
+        max_inv_entry = tk.Entry(params_frame, textvariable=self.max_inv_var, width=10)
+        max_inv_entry.grid(row=0, column=3, padx=5, pady=5)
         
         # RSI seuils
         tk.Label(params_frame, text="RSI Oversold:", width=15, anchor='e').grid(row=1, column=0, padx=5, pady=5)
         self.rsi_over_var = tk.StringVar(value=str(self.bot_config['rsi_oversold']))
-        tk.Entry(params_frame, textvariable=self.rsi_over_var, width=10).grid(row=1, column=1, padx=5, pady=5)
+        rsi_over_entry = tk.Entry(params_frame, textvariable=self.rsi_over_var, width=10)
+        rsi_over_entry.grid(row=1, column=1, padx=5, pady=5)
         
         tk.Label(params_frame, text="RSI Overbought:", width=15, anchor='e').grid(row=1, column=2, padx=5, pady=5)
         self.rsi_overb_var = tk.StringVar(value=str(self.bot_config['rsi_overbought']))
-        tk.Entry(params_frame, textvariable=self.rsi_overb_var, width=10).grid(row=1, column=3, padx=5, pady=5)
+        rsi_overb_entry = tk.Entry(params_frame, textvariable=self.rsi_overb_var, width=10)
+        rsi_overb_entry.grid(row=1, column=3, padx=5, pady=5)
         
         # Profit/Loss
         tk.Label(params_frame, text="Profit Target %:", width=15, anchor='e').grid(row=2, column=0, padx=5, pady=5)
         self.profit_var = tk.StringVar(value=str(self.bot_config['profit_target']))
-        tk.Entry(params_frame, textvariable=self.profit_var, width=10).grid(row=2, column=1, padx=5, pady=5)
+        profit_entry = tk.Entry(params_frame, textvariable=self.profit_var, width=10)
+        profit_entry.grid(row=2, column=1, padx=5, pady=5)
         
         tk.Label(params_frame, text="Stop Loss %:", width=15, anchor='e').grid(row=2, column=2, padx=5, pady=5)
         self.stop_var = tk.StringVar(value=str(self.bot_config['stop_loss']))
-        tk.Entry(params_frame, textvariable=self.stop_var, width=10).grid(row=2, column=3, padx=5, pady=5)
+        stop_entry = tk.Entry(params_frame, textvariable=self.stop_var, width=10)
+        stop_entry.grid(row=2, column=3, padx=5, pady=5)
         
         # Bouton sauvegarde config
         save_config_btn = tk.Button(
@@ -351,20 +382,50 @@ class ComboTradingInterface:
     def save_config(self):
         """Sauvegarde configuration bot"""
         try:
-            self.bot_config['max_positions'] = int(self.max_pos_var.get())
-            self.bot_config['max_investment'] = int(self.max_inv_var.get())
-            self.bot_config['rsi_oversold'] = float(self.rsi_over_var.get())
-            self.bot_config['rsi_overbought'] = float(self.rsi_overb_var.get())
-            self.bot_config['profit_target'] = float(self.profit_var.get())
-            self.bot_config['stop_loss'] = float(self.stop_var.get())
+            # Récupération des valeurs des champs
+            new_config = {
+                'max_positions': int(self.max_pos_var.get()),
+                'max_investment': int(self.max_inv_var.get()),
+                'rsi_oversold': float(self.rsi_over_var.get()),
+                'rsi_overbought': float(self.rsi_overb_var.get()),
+                'profit_target': float(self.profit_var.get()),
+                'stop_loss': float(self.stop_var.get()),
+                'scan_interval': self.bot_config.get('scan_interval', 300)
+            }
             
+            # Validation
+            if new_config['max_positions'] < 1 or new_config['max_positions'] > 10:
+                raise ValueError("Max positions doit être entre 1 et 10")
+            
+            if new_config['rsi_oversold'] >= new_config['rsi_overbought']:
+                raise ValueError("RSI oversold doit être < RSI overbought")
+            
+            # Sauvegarde dans le fichier
             with open('bot_config.json', 'w') as f:
-                json.dump(self.bot_config, f, indent=2)
+                json.dump(new_config, f, indent=2)
             
-            self.log_bot_message("💾 Configuration sauvegardée")
+            # Mise à jour config interne
+            self.bot_config.update(new_config)
             
+            # Feedback visuel
+            self.log_bot_message("💾 Configuration sauvegardée avec succès!")
+            self.log_bot_message(f"   Max positions: {new_config['max_positions']}")
+            self.log_bot_message(f"   Max investment: ${new_config['max_investment']}")
+            
+            # Message popup
+            messagebox.showinfo("Succès", 
+                f"Configuration sauvegardée!\n"
+                f"Max positions: {new_config['max_positions']}\n"
+                f"Redémarrez le bot pour appliquer les changements.")
+            
+            self.update_status(f"💾 Config sauvée - Max pos: {new_config['max_positions']}")
+            
+        except ValueError as e:
+            self.log_bot_message(f"❌ Erreur validation: {e}")
+            messagebox.showerror("Erreur", f"Erreur de validation:\n{e}")
         except Exception as e:
             self.log_bot_message(f"❌ Erreur sauvegarde config: {e}")
+            messagebox.showerror("Erreur", f"Erreur sauvegarde:\n{e}")
     
     def read_bot_output(self):
         """Lecture output du bot en temps réel"""
