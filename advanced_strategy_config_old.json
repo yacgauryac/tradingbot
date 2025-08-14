@@ -1,0 +1,134 @@
+{
+  "default": {
+    "rsi": {
+      "window": 14,
+      "oversold": 30,
+      "overbought": 70,
+      "weight": 0.4
+    },
+    "macd": {
+      "fast": 12,
+      "slow": 26,
+      "signal": 9,
+      "weight": 0.3
+    },
+    "bollinger": {
+      "window": 20,
+      "std_dev": 2,
+      "weight": 0.2
+    },
+    "volume": {
+      "sma_window": 20,
+      "volume_threshold": 1.5,
+      "weight": 0.1
+    },
+    "thresholds": {
+      "min_confidence": 0.15,
+      "strong_signal": 0.6
+    }
+  },
+  "sectors": {
+    "tech": {
+      "rsi": {
+        "window": 10,
+        "oversold": 25,
+        "overbought": 75
+      },
+      "macd": {
+        "fast": 8,
+        "slow": 21,
+        "signal": 5
+      },
+      "thresholds": {
+        "min_confidence": 0.2
+      }
+    },
+    "finance": {
+      "rsi": {
+        "window": 21,
+        "oversold": 35,
+        "overbought": 65
+      },
+      "macd": {
+        "fast": 15,
+        "slow": 30,
+        "signal": 12
+      },
+      "volume": {
+        "volume_threshold": 2.0
+      }
+    },
+    "healthcare": {
+      "rsi": {
+        "window": 18,
+        "oversold": 28,
+        "overbought": 72
+      },
+      "bollinger": {
+        "window": 25,
+        "std_dev": 2.5
+      }
+    },
+    "energy": {
+      "rsi": {
+        "window": 12,
+        "oversold": 20,
+        "overbought": 80
+      },
+      "volume": {
+        "volume_threshold": 2.5
+      }
+    }
+  },
+  "symbols": {
+    "TSLA": {
+      "rsi": {
+        "window": 8,
+        "oversold": 20,
+        "overbought": 80
+      },
+      "bollinger": {
+        "std_dev": 3.0
+      },
+      "thresholds": {
+        "min_confidence": 0.25
+      }
+    },
+    "BRK.A": {
+      "rsi": {
+        "window": 25,
+        "oversold": 40,
+        "overbought": 60
+      },
+      "macd": {
+        "fast": 20,
+        "slow": 40,
+        "signal": 15
+      }
+    }
+  },
+  "symbol_sectors": {
+    "AAPL": "tech",
+    "MSFT": "tech",
+    "GOOGL": "tech",
+    "META": "tech",
+    "NVDA": "tech",
+    "AMZN": "tech",
+    "NFLX": "tech",
+    "CRM": "tech",
+    "ORCL": "tech",
+    "JPM": "finance",
+    "BAC": "finance",
+    "WFC": "finance",
+    "GS": "finance",
+    "JNJ": "healthcare",
+    "PFE": "healthcare",
+    "UNH": "healthcare",
+    "ABT": "healthcare",
+    "XOM": "energy",
+    "CVX": "energy",
+    "SLB": "energy",
+    "COP": "energy"
+  },
+  "last_update": "2025-08-14T21:46:13.709523"
+}

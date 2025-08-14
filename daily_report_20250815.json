@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-08-15T01:30:05.209677",
+  "positions_current": {
+    "CE": {
+      "quantity": 23,
+      "entry_price": 41.95,
+      "current_price": 42.62,
+      "pnl_pct": 1.597139451728235,
+      "pnl_dollar": 15.409999999999876,
+      "days_held": 0
+    },
+    "AMZN": {
+      "quantity": 4,
+      "entry_price": 232.97,
+      "current_price": 230.98,
+      "pnl_pct": -0.8541872344078676,
+      "pnl_dollar": -7.960000000000036,
+      "days_held": 0
+    },
+    "ACVA": {
+      "quantity": 87,
+      "entry_price": 11.47,
+      "current_price": 11.29,
+      "pnl_pct": -1.5693112467306143,
+      "pnl_dollar": -15.66000000000013,
+      "days_held": 0
+    }
+  },
+  "signals_detected": [
+    {
+      "symbol": "BAC",
+      "price": 47.71,
+      "rsi": 44.88950276243093,
+      "macd": -0.015902717993149906,
+      "macd_signal": -0.07565687029767236,
+      "buy_signal": "True",
+      "confidence": 0.11950830460904491,
+      "reasons": {
+        "rsi_oversold": "False",
+        "macd_bullish": "True"
+      }
+    }
+  ],
+  "portfolio_summary": {
+    "total_pnl": -8.21000000000029
+  },
+  "actions_taken": []
+}
