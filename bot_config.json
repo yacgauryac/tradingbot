@@ -1,0 +1,9 @@
+{
+  "max_positions": 4,
+  "max_investment": 500,
+  "rsi_oversold": 30.0,
+  "rsi_overbought": 70.0,
+  "profit_target": 5.0,
+  "stop_loss": -8.0,
+  "scan_interval": 300
+}

@@ -15,32 +15,37 @@ class AutoTradingBot:
         self.ib = IB()
         self.running = True
         
-        # Configuration
-        self.config = {
-            'max_positions': 3,           # Max 3 positions simultanées
-            'max_investment_per_trade': 1000,  # $1000 max par trade
-            'scan_interval': 300,         # Scan toutes les 5 minutes
-            'position_check_interval': 60, # Check positions toutes les 1 min
-            
-            # Paramètres stratégie (optimisés)
+        # Configuration par défaut
+        self.default_config = {
+            'max_positions': 3,
+            'max_investment_per_trade': 1000,
+            'scan_interval': 300,
+            'position_check_interval': 60,
             'rsi_window': 14,
             'rsi_oversold': 30,
             'rsi_overbought': 70,
             'macd_fast': 12,
             'macd_slow': 26,
             'macd_signal': 9,
-            
-            # Règles de sortie
-            'profit_target': 0.05,       # +5%
-            'stop_loss': -0.08,          # -8%
-            'max_hold_days': 10,         # 10 jours max
-            'rsi_exit': 70               # RSI > 70
+            'profit_target': 0.05,
+            'stop_loss': -0.08,
+            'max_hold_days': 10,
+            'rsi_exit': 70
         }
+        
+        # Charger config depuis fichier (priorité à bot_config.json)
+        self.config = self.load_config()
+        
+        print(f"🤖 Bot initialisé avec config:")
+        print(f"   Max positions: {self.config['max_positions']}")
+        print(f"   Max investment: ${self.config['max_investment_per_trade']}")
+        print(f"   RSI seuils: {self.config['rsi_oversold']}/{self.config['rsi_overbought']}")
+        print(f"   Profit/Stop: +{self.config['profit_target']*100:.0f}%/{self.config['stop_loss']*100:.0f}%")
         
         # Watchlists
         self.watchlists = {
             'breakout': ['CSCO', 'GOOGL', 'META', 'MSFT', 'APP', 'BSX'],
-            'oversold': ['ACVA', 'AIV', 'CE'],  # CE déjà acheté
+            'oversold': ['ACVA', 'AIV', 'CE'],
             'momentum': ['AAPL', 'TSLA', 'NVDA', 'AMZN']
         }
         
@@ -50,6 +55,41 @@ class AutoTradingBot:
         self.last_scan = None
         
         self.load_state()
+    
+    def load_config(self):
+        """Chargement configuration avec priorité bot_config.json"""
+        config = self.default_config.copy()
+        
+        try:
+            # 1. Essayer bot_config.json (créé par l'interface)
+            if os.path.exists('bot_config.json'):
+                with open('bot_config.json', 'r') as f:
+                    interface_config = json.load(f)
+                
+                # Adaptation des noms (interface → bot)
+                if 'max_positions' in interface_config:
+                    config['max_positions'] = interface_config['max_positions']
+                if 'max_investment' in interface_config:
+                    config['max_investment_per_trade'] = interface_config['max_investment']
+                if 'rsi_oversold' in interface_config:
+                    config['rsi_oversold'] = interface_config['rsi_oversold']
+                if 'rsi_overbought' in interface_config:
+                    config['rsi_overbought'] = interface_config['rsi_overbought']
+                if 'profit_target' in interface_config:
+                    config['profit_target'] = interface_config['profit_target'] / 100  # % → décimal
+                if 'stop_loss' in interface_config:
+                    config['stop_loss'] = interface_config['stop_loss'] / 100  # % → décimal
+                
+                print(f"✅ Config chargée depuis bot_config.json")
+                
+            else:
+                print(f"⚠️ Utilisation config par défaut (pas de bot_config.json)")
+                
+        except Exception as e:
+            print(f"❌ Erreur chargement config: {e}")
+            print(f"⚠️ Utilisation config par défaut")
+        
+        return config
     
     def connect(self):
         """Connexion IB"""
